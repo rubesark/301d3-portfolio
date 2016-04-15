@@ -1,0 +1,13 @@
+.site-header {
+  background: gold;
+  color: black;
+  border: solid;
+  border-color: purple;
+  border-width: thick;
+}
+
+.main-nav ul {
+  list-style: none;
+  color: black;
+  font-size: 20px;
+}
