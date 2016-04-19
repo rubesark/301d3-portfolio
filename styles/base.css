@@ -5,4 +5,5 @@ background: black;
 
 img {
   float: right;
+  max-width: 100%;
 }
