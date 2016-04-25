@@ -1,0 +1,111 @@
+.site-header {
+  background: gold;
+  color: purple;
+  border: solid;
+  border-color: purple;
+  border-width: thick;
+}
+
+.main-nav ul {
+  list-style: none;
+  color: black;
+  font-size: 20px;
+  text-align: right;
+  display: none;
+}
+
+.main-nav:hover ul{
+  display: block;
+}
+
+.main-nav li {
+  display: inline;
+}
+
+.footer {
+  color: purple;
+  background: gold;
+  border: solid;
+  border-color: purple;
+  border-width: thick;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.icon-menu {
+  width: 30%;
+  float: right;
+}
+
+ul#filters {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 0;
+  margin-bottom: 50px;
+}
+
+select#story-filter {
+  width: 20%;
+  background-color: gold;
+  border: solid;
+  border-width: thick;
+  border-color: purple;
+  margin-left: 0;
+  font-size: 20px;
+}
+
+ article.section {
+  border: solid;
+  border-color: purple;
+  border-width: thick;
+}
+
+article.section2 {
+ color: yellow;
+ border: solid;
+ border-color: #990000;
+ border-width: thick;
+ margin-top: 20px;
+ background-color: #0066CC;
+ background-image: url("../img/pacman.png");
+ background-repeat: no-repeat;
+ align: center;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.template {
+  display: none;
+}
+
+@media only screen and (min-width: 640px) {
+  .icon-menu {
+    display: none;
+  }
+
+  .main-nav {
+    padding: .2em .2em .2em 2em;
+  }
+
+  .main-nav ul {
+    display: block;
+  }
+
+  .main-nav ul li {
+    display: inline;
+    border-bottom: none;
+  }
+
+  .main-nav ul li:hover a {
+    color: #29506D;
+  }
+
+}
