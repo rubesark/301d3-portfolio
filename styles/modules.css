@@ -56,13 +56,13 @@ select#story-filter {
   font-size: 20px;
 }
 
- section.section {
+ article.section {
   border: solid;
   border-color: purple;
   border-width: thick;
 }
 
-section.section2 {
+article.section2 {
  color: yellow;
  border: solid;
  border-color: #990000;
@@ -80,6 +80,10 @@ section.section2 {
 
 .pull-right {
   float: right;
+}
+
+.template {
+  display: none;
 }
 
 @media only screen and (min-width: 640px) {
