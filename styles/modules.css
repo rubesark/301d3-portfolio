@@ -56,13 +56,13 @@ select#story-filter {
   font-size: 20px;
 }
 
- section.section {
+ article.clearfix {
   border: solid;
   border-color: purple;
   border-width: thick;
 }
 
-section.section2 {
+article.clearfix2 {
  color: yellow;
  border: solid;
  border-color: #990000;
@@ -71,6 +71,16 @@ section.section2 {
  background-color: #0066CC;
  background-image: url("../img/pacman.png");
  background-repeat: no-repeat;
+ align: center;
+}
+
+article.clearfix3 {
+  color: orange;
+  border: solid;
+  border-color: orange;
+  border-width: thick;
+  margin-top: 20px;
+  background-color: #000080;
 }
 
 .pull-left {
@@ -79,6 +89,10 @@ section.section2 {
 
 .pull-right {
   float: right;
+}
+
+.template {
+  display: none;
 }
 
 @media only screen and (min-width: 640px) {

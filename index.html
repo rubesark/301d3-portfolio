@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
+
+    <script id="blog-template" type="text/x-handlebars-template">
+      <article class="{{class}}" data-story="{{story}}" data-class={{class}}>
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            {{publishedOn}}
+          </div>
+        </header>
+        <section class="blog-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -52,6 +65,7 @@
       </footer>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
   <script src="/scripts/blogStory.js"></script>
   <script src="/scripts/blog.js"></script>
   <script src="/scripts/blogView.js"></script>
