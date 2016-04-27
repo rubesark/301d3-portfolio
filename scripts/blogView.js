@@ -24,17 +24,37 @@ blogView.handleStoryFilter = function() {
     })
 };
 
+blogView.handleMainNav = function() {
+  $('.main-nav').on('click', '.tab', function(e) {
+    $('.tab-content').hide();
+    $('#' + $(this).data('content')).fadeIn();
+  });
+
+  $('.main-nav .tab:first').click();
+};
+
+blogView.truncateBlogs = function() {
+  $('el').not(':first').hide();
+}
+
 blogView.setTeasers = function() {
   $('.blog-body *:nth-of-type(n+2)').hide();
 
 
-  $('article').on('click', 'a.read-on', function(e) {
+  $('#blog').on('click', 'a.read-on', function(e) {
     e.preventDefault();
+    console.log('clicked on this');
     $(this).parent().find('*').fadeIn();
     $(this).hide();
-  })
+  });
 
 };
+
+blogView.initIndexPage = function() {
+  Blog.all.forEach(function(a){
+    $('#blog').append(a.toHtml())
+  });
+}
 
 $(document).ready(function () {
   blogView.populateFilter();

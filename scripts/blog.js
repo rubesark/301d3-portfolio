@@ -1,5 +1,3 @@
-var blogs = [];
-
 function Blog (opts) {
   this.story = opts.story;
   this.title = opts.title;
@@ -7,6 +5,8 @@ function Blog (opts) {
   this.publishedOn = opts.publishedOn;
   this.class = opts.class;
 }
+
+Blog.all = []
 
 Blog.prototype.toHtml = function() {
   var $source = $('#blog-template').html();
@@ -18,14 +18,49 @@ Blog.prototype.toHtml = function() {
   return template(this);
 };
 
-  storyData.sort(function(a,b) {
+Blog.loadAll = function(dataPassedIn) {
+  dataPassedIn.sort(function(a,b) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
-
-  storyData.forEach(function(ele) {
-    blogs.push(new Blog(ele));
-  })
-
-  blogs.forEach(function(a){
-    $('#blog').append(a.toHtml())
+  dataPassedIn.forEach(function(ele) {
+    Blog.all.push(new Blog(ele));
   });
+};
+
+Blog.fetchAll = function() {
+  if (localStorage.blogStory) {
+    $.ajax({
+      type: 'HEAD',
+      url: 'data/blogStory.json',
+      success: function(data, message, xhr) {
+        var eTag = xhr.getResponseHeader('eTag');
+        if (eTag !== localStorage.eTag) {
+          $.getJSON('data/blogStory.json', function(data) {
+            Blog.loadAll(data);
+            localStorage.blogStory = JSON.stringify(Blog.all);
+          localStorage.eTag = JSON.stringify(eTag);
+          blogView.initIndexPage();
+        });
+        } else {
+          Blog.loadAll(JSON.parse(localStorage.blogStory));
+          blogView.initIndexPage();
+        }
+      }
+    });
+
+  } else {
+    $.ajax({
+      type: 'HEAD',
+      url: 'data/blogStory.json',
+      success: function(data, message, xhr) {
+        var eTag = xhr.getResponseHeader('eTag');
+        localStorage.eTag = JSON.stringify(eTag);
+      }
+    });
+    $.getJSON('data/blogStory.json', function(data){
+    Blog.loadAll(data);
+    localStorage.blogStory = JSON.stringify(Blog.all);
+    blogView.initIndexPage();
+  });
+  }
+};

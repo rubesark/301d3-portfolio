@@ -56,45 +56,6 @@ select#story-filter {
   font-size: 20px;
 }
 
- article.clearfix {
-  border: solid;
-  border-color: purple;
-  border-width: thick;
-}
-
-article.clearfix2 {
- color: yellow;
- border: solid;
- border-color: #990000;
- border-width: thick;
- margin-top: 20px;
- background-color: #0066CC;
- background-image: url("../img/pacman.png");
- background-repeat: no-repeat;
- align: center;
-}
-
-article.clearfix3 {
-  color: orange;
-  border: solid;
-  border-color: orange;
-  border-width: thick;
-  margin-top: 20px;
-  background-color: #000080;
-}
-
-.pull-left {
-  float: left;
-}
-
-.pull-right {
-  float: right;
-}
-
-.template {
-  display: none;
-}
-
 @media only screen and (min-width: 640px) {
   .icon-menu {
     display: none;
