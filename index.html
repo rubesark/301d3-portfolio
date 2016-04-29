@@ -29,11 +29,11 @@
       <nav class="main-nav">
         <div class="icon-menu"><img src="img/bball.png"></div>
           <ul>
-            <li><a href=""> Home</a></li>
+            <li><a href="/"> Home</a></li>
             <li><a href="https://www.linkedin.com/in/rubensarkisyan"> Linkedin</a></li>
             <li><a href="https://github.com/rubens23"> Github</a></li>
             <li><a href="http://codepen.io/rubens24/"> Codepen</a></li>
-            <li><a href=""> About</a></li>
+            <li><a href="/about"> About</a></li>
           </ul>
       </nav>
     </header>
@@ -60,16 +60,39 @@
             <a href="#" class="read-on">Read on &rarr;</a>
           </article>
       </section>
+      <section id="about" class="tab-content">
+        <header>
+          Welcome to my Sports Blog
+        </header>
+        <section>
+          <h1>Some of my interests:</h1>
+          <ul>
+            <li>Playing Sports</li>
+            <li>Watching Sports</li>
+            <li>Hanging out with my friends and family watching sports</li>
+          </ul>
+        </section>
+      </section>
       </main>
       <footer class="footer">
           &copy; 2016 | Ruben Sarkisyan | Sports Blog
       </footer>
+
+      <script src="/vendor/scripts/jquery-2.1.4.js"></script>
+      <script src="/vendor/scripts/handlebars.js"></script>
+      <script src="/vendor/scripts/marked.js"></script>
+      <script src="/vendor/scripts/html5sql.js"></script>
+      <script src="/vendor/scripts/webdb.js"></script>
+      <script src='/vendor/scripts/page.js'></script>
+
+      <script src="/scripts/blog.js"></script>
+      <script src="/scripts/blogView.js"></script>
+      <script src="/scripts/blogController.js"></script>
+      <script src="/scripts/aboutController.js"></script>
+      <script src="/scripts/routes.js"></script>
+
   </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-  <script src="/scripts/blog.js"></script>
-  <script src="/scripts/blogView.js"></script>
-  <script>
+  <!-- <script>
     Blog.fetchAll(blogView.initIndexPage);
-  </script>
+  </script> -->
 </html>
