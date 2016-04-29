@@ -1,3 +1,5 @@
+(function(module) {
+
 var blogView = {};
 
 blogView.populateFilter = function() {
@@ -38,7 +40,7 @@ blogView.truncateBlogs = function() {
 }
 
 blogView.setTeasers = function() {
-  $('.blog-body *:nth-of-type(n+2)').hide();
+  $('.blog-body *:nth-of-type(n+2), .blog-body img').hide();
 
 
   $('#blog').on('click', 'a.read-on', function(e) {
@@ -54,10 +56,11 @@ blogView.initIndexPage = function() {
   Blog.all.forEach(function(a){
     $('#blog').append(a.toHtml())
   });
-}
 
-$(document).ready(function () {
   blogView.populateFilter();
   blogView.handleStoryFilter();
   blogView.setTeasers();
-});
+};
+
+module.blogView = blogView;
+})(window);

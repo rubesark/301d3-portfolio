@@ -1,4 +1,8 @@
-function Blog (opts) {
+(function(module) {
+  var blog = {};
+  blog.property = 'property';
+
+  function Blog (opts) {
   this.story = opts.story;
   this.title = opts.title;
   this.body = opts.body;
@@ -9,8 +13,7 @@ function Blog (opts) {
 Blog.all = []
 
 Blog.prototype.toHtml = function() {
-  var $source = $('#blog-template').html();
-  var template = Handlebars.compile($source);
+  var template = Handlebars.compile($('#blog-template').text());
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
@@ -22,45 +25,51 @@ Blog.loadAll = function(dataPassedIn) {
   dataPassedIn.sort(function(a,b) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
-  dataPassedIn.forEach(function(ele) {
-    Blog.all.push(new Blog(ele));
-  });
-};
 
-Blog.fetchAll = function() {
+  Blog.all = dataPassedIn.map(function(ele) {
+    return new Blog(ele);
+    });
+  };
+
+Blog.fetchAll = function(callback) {
   if (localStorage.blogStory) {
     $.ajax({
       type: 'HEAD',
       url: 'data/blogStory.json',
       success: function(data, message, xhr) {
         var eTag = xhr.getResponseHeader('eTag');
-        if (eTag !== localStorage.eTag) {
-          $.getJSON('data/blogStory.json', function(data) {
-            Blog.loadAll(data);
-            localStorage.blogStory = JSON.stringify(Blog.all);
-          localStorage.eTag = JSON.stringify(eTag);
-          blogView.initIndexPage();
-        });
+        if (!localStorage.eTag || eTag!== localStorage.eTag) {
+            localStorage.eTag = eTag;
+            Blog.getAll();
         } else {
           Blog.loadAll(JSON.parse(localStorage.blogStory));
-          blogView.initIndexPage();
+          callback();
         }
       }
     });
 
   } else {
-    $.ajax({
-      type: 'HEAD',
-      url: 'data/blogStory.json',
-      success: function(data, message, xhr) {
-        var eTag = xhr.getResponseHeader('eTag');
-        localStorage.eTag = JSON.stringify(eTag);
-      }
-    });
-    $.getJSON('data/blogStory.json', function(data){
-    Blog.loadAll(data);
-    localStorage.blogStory = JSON.stringify(Blog.all);
-    blogView.initIndexPage();
-  });
+    Blog.getAll();
   }
 };
+
+Blog.getAll = function() {
+  $.getJSON('data/blogStory.json', function(responseData) {
+    Blog.loadAll(responseData);
+    localStorage.blogStory = JSON.stringify(responseData);
+    blogView.initIndexPage();
+  });
+};
+
+Blog.numWordsAll = function() {
+  return Blog.all.map(function(article) {
+    return article.body.match(/\b\w+/g).length;
+  })
+  .reduce(function(a, b) {
+    return a + b;
+  });
+};
+
+module.Blog = Blog;
+
+}) (window);
