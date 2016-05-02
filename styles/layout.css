@@ -40,3 +40,11 @@ article.clearfix3 {
 .template {
  display: none;
 }
+
+section#about.tab-content {
+  border: solid;
+  border-width: thick;
+  color: purple;
+  background-color: gold;
+  margin-top: 20px;
+}
