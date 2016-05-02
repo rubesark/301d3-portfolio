@@ -2,6 +2,16 @@
 
 var blogView = {};
 
+var render = function(blog) {
+  var template = Handlebars.compile($('#blog-template').text());
+
+  blog.daysAgo = parseInt((new Date() - new Date(blog.publishedOn))/60/60/24/1000);
+  blog.publishStatus = blog.publishedOn ? 'published ' + blog.daysAgo + ' days ago' : '(draft)';
+  blog.body = marked(blog.body);
+
+  return template(blog);
+};
+
 // Added a method to the empty blogView object called populateFilter. Inside there are two variables: options and template
 // which are equal to the Handlebars compiler which is grabbing the class option-template and populating the handlebars script in
 // the head portion of my index.html. Then it calls the options variable setting it equal to the .allAuthors method which is then mapped
@@ -45,30 +55,47 @@ blogView.handleMainNav = function() {
 };
 
 //Making a seatTeasers function that shows only a section of my articles until you click the read-on links and the articles expands to full view.
-blogView.setTeasers = function() {
-  $('.blog-body *:nth-of-type(n+2), .blog-body img').hide();
+// blogView.setTeasers = function() {
+//   $('.blog-body *:nth-of-type(n+2), .blog-body img').hide();
+//
+//
+//   $('#blog').on('click', 'a.read-on', function(e) {
+//     e.preventDefault();
+//     console.log('clicked on this');
+//     $(this).parent().find('*').fadeIn();
+//     $(this).hide();
+//   });
+//
+// };
+
+// blogView.initIndexPage = function() {
+//   Blog.all.forEach(function(a){
+//     $('#blog').append(a.toHtml())
+//   });
+
+  blogView.index = function(blogs) {
+      $('#blog').show().siblings().hide();
+
+      $('#blog article').remove();
+      blogs.forEach(function(a) {
+        $('#blog').append(render(a));
+      });
+
+      blogView.populateFilter();
+      blogView.handleStoryFilter();
+
+      if ($('#blog article').length > 1) {
+        $('.blog-body *:nth-of-type(n+2) .blog-body img').hide();
+    }
+  };
 
 
-  $('#blog').on('click', 'a.read-on', function(e) {
-    e.preventDefault();
-    console.log('clicked on this');
-    $(this).parent().find('*').fadeIn();
-    $(this).hide();
-  });
-
-};
-
-blogView.initIndexPage = function() {
-  Blog.all.forEach(function(a){
-    $('#blog').append(a.toHtml())
-  });
-
-  // Now calling the handleStoryFilter and populateFilter functions listed above. Both methods track back through when I first
-  // instantiated each function up above.
-  blogView.populateFilter();
-  blogView.handleStoryFilter();
-  blogView.setTeasers();
-};
+// Now calling the handleStoryFilter and populateFilter functions listed above. Both methods track back through when I first
+// instantiated each function up above.
+//   blogView.populateFilter();
+//   blogView.handleStoryFilter();
+//   blogView.setTeasers();
+// };
 
 module.blogView = blogView;
 })(window);
