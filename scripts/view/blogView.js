@@ -2,6 +2,12 @@
 
 var blogView = {};
 
+// Added a method to the empty blogView object called populateFilter. Inside there are two variables: options and template
+// which are equal to the Handlebars compiler which is grabbing the class option-template and populating the handlebars script in
+// the head portion of my index.html. Then it calls the options variable setting it equal to the .allAuthors method which is then mapped
+// by author and then returns a template for the handlebars script setting the value equal to the author. Which again is put into
+// the index.html template to display on the webpage. Then I run an if statement to remove any duplicate authors found in my filter.
+// Then append the class author filter to options.
 blogView.populateFilter = function() {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {
@@ -14,6 +20,9 @@ blogView.populateFilter = function() {
   });
 };
 
+  // Now instantiate a new method on the articleView object. I select my filters class and use an event that cycles through
+  // it and whichever option you choose in the filter menu, It will fadeIn that particlur story and hide all the others that
+  // are not selected.
 blogView.handleStoryFilter = function() {
     $('#story-filter').on('change', function () {
       if ($(this).val()) {
@@ -35,10 +44,7 @@ blogView.handleMainNav = function() {
   $('.main-nav .tab:first').click();
 };
 
-blogView.truncateBlogs = function() {
-  $('el').not(':first').hide();
-}
-
+//Making a seatTeasers function that shows only a section of my articles until you click the read-on links and the articles expands to full view.
 blogView.setTeasers = function() {
   $('.blog-body *:nth-of-type(n+2), .blog-body img').hide();
 
@@ -57,6 +63,8 @@ blogView.initIndexPage = function() {
     $('#blog').append(a.toHtml())
   });
 
+  // Now calling the handleStoryFilter and populateFilter functions listed above. Both methods track back through when I first
+  // instantiated each function up above.
   blogView.populateFilter();
   blogView.handleStoryFilter();
   blogView.setTeasers();

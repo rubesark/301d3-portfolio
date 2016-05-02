@@ -31,6 +31,7 @@ Blog.loadAll = function(dataPassedIn) {
     });
   };
 
+//Making an ajax call that looks to my json file which has all of the data that I wish to show on my page and loads it into my local storage.
 Blog.fetchAll = function(callback) {
   if (localStorage.blogStory) {
     $.ajax({
@@ -61,6 +62,7 @@ Blog.getAll = function() {
   });
 };
 
+//Creating a function that maps through my articles and finds the number of words that each article has.
 Blog.numWordsAll = function() {
   return Blog.all.map(function(article) {
     return article.body.match(/\b\w+/g).length;
