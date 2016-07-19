@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ruben's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
+
+    <script id="blog-template" type="text/x-handlebars-template">
+      <article class="{{class}}" data-story="{{story}}" data-class={{class}}>
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            {{publishedOn}}
+          </div>
+        </header>
+        <section class="blog-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
+    <script id="repo-template" type="text/x-handlebars-template">
+      <li>
+        <a href="{{html_url}}" target="_blank"><h3>{{name}}</h3></a>
+        <p>Description: {{description}}</p>
+        <p>Language: {{language}}</p>
+        <p>Created: {{created_at}}</p>
+        <p>Last updated: {{updated_at}}</p>
+        {{#if watchers_count}}
+          <p>{{watchers_count}} watching this repo</p>
+        {{/if}}
+      </li>
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <section>
+        <h1>Welcome to my Sports Blog!</h1>
+      </section>
+      <nav class="main-nav">
+        <div class="icon-menu"><img src="img/bball.png"></div>
+          <ul>
+            <li><a href="/"> Home</a></li>
+            <li><a href="https://www.linkedin.com/in/rubensarkisyan"> Linkedin</a></li>
+            <li><a href="https://github.com/rubens23"> Github</a></li>
+            <li><a href="http://codepen.io/rubens24/"> Codepen</a></li>
+            <li><a href="/about"> About</a></li>
+          </ul>
+      </nav>
+    </header>
+    <main>
+      <section id='blog' class="tab-content">
+        <div>
+          <ul id="filters">
+            <li>
+              <select id="story-filter">
+                <option value="">Choose a Story</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <article class="template"  data-story="cat">
+          <header>
+            <h1>title</h1>
+            <div class="byline">
+              By <address><a href="">author</a></address>
+              published <time pubdate datetime="2000-01-01">Publish Time</time>
+            </div>
+          </header>
+            <section class="blog-body"></section>
+            <a href="#" class="read-on">Read on &rarr;</a>
+          </article>
+      </section>
+      <section id="about" class="tab-content">
+          <header>
+
+          </header>
+          <section>
+            <h1>Check out my Projects on GitHub:</h1>
+            <ul>
+              <li>Coding Projects Go Here</li>
+            </ul>
+          </section>
+        </section>
+      </section>
+      </main>
+      <footer class="footer">
+          &copy; 2016 | Ruben Sarkisyan | Sports Blog
+      </footer>
+
+      <script src="/vendor/scripts/jquery-2.1.4.js"></script>
+      <script src="/vendor/scripts/handlebars.js"></script>
+      <script src="/vendor/scripts/marked.js"></script>
+      <script src="/vendor/scripts/html5sql.js"></script>
+      <script src="/vendor/scripts/webdb.js"></script>
+      <script src='/vendor/scripts/page.js'></script>
+
+      <!-- <script src="/scripts/githubToken.js"></script> -->
+
+      <script src="/scripts/model/blog.js"></script>
+      <script src="/scripts/model/repo.js"></script>
+      <script src="/scripts/view/blogView.js"></script>
+      <script src="/scripts/view/repoView.js"></script>
+      <script src="/scripts/controller/blogController.js"></script>
+      <script src="/scripts/controller/aboutController.js"></script>
+      <script src="/scripts/routes.js"></script>
+  </body>
+</html>

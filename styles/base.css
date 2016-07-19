@@ -1,0 +1,29 @@
+body {
+color: gold;
+background: black;
+font-family: helvetica;
+}
+
+img {
+  float: right;
+  max-width: 100%;
+}
+
+main {
+  margin-left: 0;
+}
+
+p {
+
+}
+div {
+  left: 0;
+}
+
+h1 {
+  width: 50%;
+}
+
+.container {
+  width: 55%;
+}

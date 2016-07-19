@@ -1,0 +1,50 @@
+article.clearfix {
+ border: solid;
+ border-color: purple;
+ border-width: thick;
+}
+
+article.clearfix2 {
+color: yellow;
+border: solid;
+border-color: #990000;
+border-width: thick;
+margin-top: 20px;
+background-color: #0066CC;
+background-image: url("../img/pacman.png");
+background-repeat: no-repeat;
+align: center;
+}
+
+article.clearfix3 {
+ color: orange;
+ border: solid;
+ border-color: white;
+ border-width: thick;
+ margin-top: 20px;
+ background-color: #000080;
+}
+
+.read-on {
+ color: white;
+}
+
+.pull-left {
+ float: left;
+}
+
+.pull-right {
+ float: right;
+}
+
+.template {
+ display: none;
+}
+
+section#about.tab-content {
+  border: solid;
+  border-width: thick;
+  color: purple;
+  background-color: gold;
+  margin-top: 20px;
+}
